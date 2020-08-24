@@ -1,0 +1,25 @@
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto, sans-serif;
+  align-items: center;
+  background: linear-gradient(90deg, rgb(0, 92, 26), rgba(252, 252, 252, 0));
+  width: 150px;
+  height: 100vh;
+  color: #dbdbdb;
+  font-size: 18px;
+
+  & div {
+  margin: 7px auto;
+  }
+
+  .avatar {
+    background-color: white;
+    height: 70px;
+    width: 70px;
+    border-radius: 40px;
+    margin-top: 20px;
+  }
+
+
+}
