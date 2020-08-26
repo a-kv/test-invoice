@@ -2,9 +2,8 @@ import React, {useEffect} from 'react';
 import '../../../scss/buyers.scss';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect, useParams} from "react-router-dom";
-
-import {AppRootStateType} from "../../../redux/store";
 import {buyerType, getBuyer} from "../../../redux/buyerReducer";
+import {AppRootStateType} from "../../../redux/store";
 
 
 type propsType = {

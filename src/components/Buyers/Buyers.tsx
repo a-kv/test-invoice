@@ -5,7 +5,7 @@ import {AppRootStateType} from '../../redux/store';
 import {getBuyers, getBuyersAC, setOrderAC, setPageAC, setPageSizeAC, setSortFieldsAC} from '../../redux/buyersReducer';
 import {Redirect} from "react-router-dom";
 import Pagination from "react-js-pagination";
-import { Table } from '../Table/Table';
+import {Table} from '../Table/Table';
 
 type propsType = {
     isAuth: boolean
