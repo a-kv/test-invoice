@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import '../../scss/buyers.scss';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
-import {getBuyers, getBuyersAC, setOrder, setPage, setPageSize, setSortFields} from '../../redux/buyersReducer';
+import {getBuyers, getBuyersAC, setOrderAC, setPageAC, setPageSizeAC, setSortFieldsAC} from '../../redux/buyersReducer';
 import {Redirect} from "react-router-dom";
-import {Table} from '../Table/Table';
 import Pagination from "react-js-pagination";
+import { Table } from '../Table/Table';
 
 type propsType = {
     isAuth: boolean
@@ -27,31 +27,30 @@ export const Buyers = ({isAuth}: propsType) => {
     }
     const handlePageChange = (currentPage: number) => {
         dispatch(getBuyersAC([]))
-        console.log(`active page is ${currentPage}`);
-        dispatch(setPage(currentPage))
+        dispatch(setPageAC(currentPage))
     }
     const changePageSize = (pageSize: number) => {
         dispatch(getBuyersAC([]))
-        dispatch(setPageSize(pageSize))
+        dispatch(setPageSizeAC(pageSize))
     }
-
-    const setAverageCheckDesc = (sortFields: string, order: string) => {
+    const changeData = (sortFields: string, order: string) => {
         dispatch(getBuyersAC([]))
-        setSortFields(sortFields)
-        setOrder(order)
+        dispatch(setSortFieldsAC(sortFields))
+        dispatch(setOrderAC(order))
+
+    }
+    const setAverageCheckDesc = (sortFields: string, order: string) => {
+        changeData(sortFields, order)
     };
 
     const setNumberOfPurchasesDesc = (sortFields: string, order: string) => {
-        dispatch(getBuyersAC([]))
-        setSortFields(sortFields)
-        setOrder(order)
+        changeData(sortFields, order)
     };
 
     const setTotalRevenuesDesc = (sortFields: string, order: string) => {
-        dispatch(getBuyersAC([]))
-        setSortFields(sortFields)
-        setOrder(order)
+        changeData(sortFields, order)
     };
+
     return (
         <div className="buyers">
             <div className='setting'><span>Choose page size: </span>

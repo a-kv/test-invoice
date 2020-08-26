@@ -26,7 +26,7 @@ export type setOrderAction = {
     type: 'BUYERS_REDUCER/SET_ORDER',
     order: string
 }
-export type setSortFields = {
+export type setSortFieldsAction = {
     type: 'BUYERS_REDUCER/SET_SORT_FIELDS',
     sortFields: string
 }
@@ -47,7 +47,7 @@ const initialState: InitialStateType = {
     sortFields: 'id'
 };
 
-type ActionsType = getBuyersAction | setPageAction | setPageSizeAction | setOrderAction | setSortFields
+type ActionsType = getBuyersAction | setPageAction | setPageSizeAction | setOrderAction | setSortFieldsAction
 
 
 export const buyersReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -86,16 +86,16 @@ export const buyersReducer = (state = initialState, action: ActionsType): Initia
 export const getBuyersAC = (buyers: Array<buyerType>): getBuyersAction => {
     return {type: 'BUYERS_REDUCER/GET_BUYERS', buyers}
 }
-export const setPage = (page: number): setPageAction => {
+export const setPageAC = (page: number): setPageAction => {
     return {type: 'BUYERS_REDUCER/SET_PAGE', page}
 }
-export const setPageSize = (pageSize: number): setPageSizeAction => {
+export const setPageSizeAC = (pageSize: number): setPageSizeAction => {
     return {type: 'BUYERS_REDUCER/SET_PAGE_SIZE', pageSize}
 }
-export const setOrder = (order: string): setOrderAction => {
+export const setOrderAC = (order: string): setOrderAction => {
     return {type: 'BUYERS_REDUCER/SET_ORDER', order}
 }
-export const setSortFields = (sortFields: string): setSortFields => {
+export const setSortFieldsAC = (sortFields: string): setSortFieldsAction => {
     return {type: 'BUYERS_REDUCER/SET_SORT_FIELDS', sortFields}
 }
 

@@ -22,7 +22,7 @@ type ActionsType = getBuyerAction
 export const buyerReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'BUYER_REDUCER/GET_BUYER':
-           return action.buyer
+            return action.buyer
         default:
             return state;
     }

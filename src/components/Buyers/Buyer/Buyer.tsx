@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import '../../../scss/buyers.scss';
 import {useDispatch, useSelector} from 'react-redux';
-import {NavLink, Redirect, useParams} from "react-router-dom";
-import {buyerType, getBuyer} from "../../../redux/buyerReducer";
+import {Redirect, useParams} from "react-router-dom";
+
 import {AppRootStateType} from "../../../redux/store";
+import {buyerType, getBuyer} from "../../../redux/buyerReducer";
 
 
 type propsType = {
@@ -27,19 +28,20 @@ export const Buyer = ({isAuth}: propsType) => {
         return <Redirect to='/'/>
     }
     return (
-        <div className="buyers">
-
-            <div className='title'>BUYER ID {buyer.id}</div>
-            <table className="table" id='table'>
-                {
-                    <tr key={buyer.id}>
-                        <td>{buyer.buyerName}</td>
-                        <td>{buyer.averageCheck} </td>
-                        <td>{buyer.numberOfPurchases}</td>
-                        <td>{buyer.totalRevenues}</td>
-                    </tr>
-                }
-            </table>
+        <div className='buyers-wrap'>
+            <div className="buyers">
+                <div className='title'>BUYER ID {buyer.id}</div>
+                <table className="table" id='table'>
+                    {
+                        <tr key={buyer.id}>
+                            <td>{buyer.buyerName}</td>
+                            <td>{buyer.averageCheck} </td>
+                            <td>{buyer.numberOfPurchases}</td>
+                            <td>{buyer.totalRevenues}</td>
+                        </tr>
+                    }
+                </table>
+            </div>
         </div>
     );
 };
