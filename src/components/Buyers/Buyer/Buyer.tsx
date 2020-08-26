@@ -1,21 +1,26 @@
 import React, {useEffect} from 'react';
-import '../../scss/buyers.scss';
-import {useDispatch} from 'react-redux';
-import {buyerType, getBuyer} from '../../redux/buyersReducer';
+import '../../../scss/buyers.scss';
+import {useDispatch, useSelector} from 'react-redux';
 import {NavLink, Redirect, useParams} from "react-router-dom";
+import {buyerType, getBuyer} from "../../../redux/buyerReducer";
+import {AppRootStateType} from "../../../redux/store";
+
 
 type propsType = {
     isAuth: boolean
-    buyer: buyerType
+
 }
 
-export const Buyer = ({isAuth, buyer}: propsType) => {
+export const Buyer = ({isAuth}: propsType) => {
 
+    const buyer = useSelector<AppRootStateType, buyerType>(state => state.buyer)
     const dispatch = useDispatch();
     let {id} = useParams()
 
     useEffect(() => {
-            dispatch(getBuyer(id))
+        let a = getBuyer(id)
+        console.log(a)
+        dispatch(a)
     }, [])
 
     if (!isAuth) {
@@ -23,11 +28,11 @@ export const Buyer = ({isAuth, buyer}: propsType) => {
     }
     return (
         <div className="buyers">
-            <div className='title'>BUYER {buyer.buyerId}</div>
+
+            <div className='title'>BUYER ID {buyer.id}</div>
             <table className="table" id='table'>
                 {
-                    <tr key={buyer.buyerId}>
-                        <td><NavLink to={`/buyers/${buyer.buyerId}`}>{buyer.buyerId}</NavLink></td>
+                    <tr key={buyer.id}>
                         <td>{buyer.buyerName}</td>
                         <td>{buyer.averageCheck} </td>
                         <td>{buyer.numberOfPurchases}</td>

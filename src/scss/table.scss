@@ -1,5 +1,5 @@
 
-.terminals {
+.buyers {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -10,16 +10,20 @@
   .titleWrap {
     display: flex;
     flex-direction: column;
-    .setting{
-      display: flex;
+    width: 100%;
+    align-items: center;;
 
-    }
     .title {
       display: flex;
       justify-content: center;
       margin: 20px auto;
       font-size: 50px;
     }
+
+    .search {
+      width: 70%;
+    }
+
   }
 
   .tableWrap {
@@ -27,10 +31,24 @@
 
     .table {
       color: white;
-      width: 70%;
+      width: 90%;
       border-collapse: collapse;
-      //border: white 1px solid;
       min-width: 280px;
+
+      th, td {
+        border-bottom: #262626 1px solid;
+      }
+
+      tr {
+        .col #max {
+          //transform: rotate(180deg);
+
+          &:hover {
+            color: green;
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }

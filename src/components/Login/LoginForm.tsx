@@ -1,26 +1,82 @@
-import React from 'react';
-import {Field, Form, reduxForm} from "redux-form";
+import {Redirect} from 'react-router-dom';
+import '../../scss/login.scss';
+import React, {useState} from 'react';
+import axios from 'axios';
 
-const LoginForm = (props: any) => {
-    const {handleSubmit} = props;
+type propsType = {
+    onSubmit: (userInfo: any) => void
+    isAuth: boolean
+    setIsAuth: any
+}
 
-    return <>
-        <h2>Hello!</h2>
-        <span>If you want to try using this app, enter:</span>
-        <div>email: test@gmail.com</div>
-        <div>password: test</div>
+export const LoginForm = (props: propsType) => {
+    const [userName, setUserName] = useState('a-kv')
+    const [password, setPassword] = useState('1234QWERasdf')
+    const [userNameError, setUserNameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
-        <div>Never enter your real data</div>
-        <br/>
+    const handleSubmit = (event: any) => {
+        setUserNameError('')
+        setPasswordError('')
+        event.preventDefault()
+        if(validate()) {
+            axios
+                .get(`https://api.github.com/users/${userName}`)
+                .then(res => {
+                    props.onSubmit(res.data)
+                    setUserName('')
+                    if (userName !== '') {
+                        props.setIsAuth(true)
+                    }
+                })
+                .catch(e => {
+                    if(e.response.status === 404) {
+                        let userNameError = 'User does not exist';
+                        setUserNameError(userNameError)
+                        props.onSubmit(e.message)
+                        props.setIsAuth(false)
+                    }
+                })
+        }
+    }
+    if (props.isAuth) {
+        return <Redirect to='/buyers'/>
+    }
+    const validate = () => {
+        const Digit = /[0-9]/.test(password)
+        const Upper = /[A-Z]/.test(password)
 
-        <Form onSubmit={props.handleSubmit}>
-            <Field component={"input"} name={'email'} placeholder='Email'/><br/>
-            <Field component={"input"} name={'password'} placeholder='Password' type={'password'}/>
-            <div>
-                <button>Sing in</button>
-            </div>
-        </Form></>
+        if (password.length < 8 || !( Digit && Upper)) {
+            let passwordError = 'Password must be more than 8 characters, at least 1 uppercase latin letter and at least 1 numeral....'
+            setPasswordError(passwordError)
+            return false
+        }
+        return true
+    }
+
+    return <div className='login-wrap'>
+        <form onSubmit={handleSubmit} className='login-form'>
+            <input
+                type="text"
+                value={userName}
+                onChange={event => setUserName(event.target.value)}
+                placeholder="GitHub username"
+                required
+            />
+            <span className='error_message'>{userNameError}</span>
+
+            <input
+                type="password"
+                value={password}
+                onChange={event => setPassword(event.target.value)}
+                placeholder="Your password"
+                required
+            />
+            <span className='error_message'>{passwordError}</span>
+
+            <button type="submit">Sing in</button>
+        </form>
+    </div>
 }
 
 
-export const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);

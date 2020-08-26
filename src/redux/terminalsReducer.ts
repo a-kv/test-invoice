@@ -1,47 +1,78 @@
-// @ts-ignore
-import { ThunkDispatch} from "redux-thunk";
+import {ThunkDispatch} from "redux-thunk";
 import {AppRootStateType} from './store';
-import {buyersApi} from "../api/api";
+import {terminalsApi} from "../api/api";
 
-export type buyerType = {
-    buyerId: string,
-    buyerName: string,
-    averageCheck: number,
-    numberOfPurchases: number,
-    totalRevenues: number
+export type terminalType = {
+    id: string,
+    title: string,
+    description: string
 }
 
-export type getBuyersAction = {
-    type: 'BUYERS_REDUCER/GET_USER_DATA',
-    buyers: Array<buyerType>
+export type removeTerminalActionType = {
+    type: 'TERMINALS_REDUCER/REMOVE_TERMINAL',
+    id: string
 }
-const initialState: Array<buyerType> = [];
+export type addTerminalActionType = {
+    type: 'TERMINALS_REDUCER/ADD_TERMINAL',
+    newTerminal: terminalType
+}
+export type getTerminalActionType = {
+    type: 'TERMINALS_REDUCER/GET_TERMINALS',
+    terminals: Array<terminalType>
+}
+const initialState: Array<terminalType> = [];
 
-type ActionsType = getBuyersAction
+type ActionsType = getTerminalActionType | addTerminalActionType | removeTerminalActionType
 
-export const buyersReducer = (state = initialState, action: ActionsType) => {
+export const terminalsReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
-        case 'BUYERS_REDUCER/GET_USER_DATA':
-                const buyers = action.buyers.map(c => ({...c}))
-                return [...buyers]
-
+        case 'TERMINALS_REDUCER/REMOVE_TERMINAL': {
+            return state.filter(c => c.id != action.id)
+        }
+        case 'TERMINALS_REDUCER/ADD_TERMINAL': {
+            return [...state, {
+                id: action.newTerminal.id,
+                title: action.newTerminal.title,
+                description: action.newTerminal.description
+            }]
+        }
+        case 'TERMINALS_REDUCER/GET_TERMINALS':
+            const terminals = action.terminals.map(t => ({...t}))
+            return [...terminals]
         default:
             return state;
     }
 }
-export const getBuyersAC = (buyers: Array<buyerType>): getBuyersAction => {
-    return {type: 'BUYERS_REDUCER/GET_USER_DATA', buyers}
+export const getTerminalAC = (terminals: Array<terminalType>): getTerminalActionType => {
+    return {type: 'TERMINALS_REDUCER/GET_TERMINALS', terminals}
 }
-
-
+export const addTerminalAC = (newTerminal: terminalType): addTerminalActionType => {
+    return {type: 'TERMINALS_REDUCER/ADD_TERMINAL', newTerminal}
+}
+export const removeTerminalAC = (id: string): removeTerminalActionType => {
+    return {type: 'TERMINALS_REDUCER/REMOVE_TERMINAL', id}
+}
 
 export type ThunkDispatchType = ThunkDispatch<AppRootStateType, {}, ActionsType>
 
-
-
-export const getBuyers = () => (dispatch: ThunkDispatchType) => {
-    buyersApi.getBuyers()
+export const getTerminals = () => (dispatch: ThunkDispatchType) => {
+    terminalsApi.getTerminals()
         .then(res => {
-            dispatch(getBuyersAC(res.data))
+            dispatch(getTerminalAC(res.data))
+        });
+}
+
+export const addNewTerminal = (title: string, description: string) => (dispatch: ThunkDispatchType) => {
+    terminalsApi.addTerminal(title, description)
+        .then(res => {
+            const newTerminal = res;
+            // @ts-ignore
+            dispatch(addTerminalAC(newTerminal))
+        });
+}
+export const removeTerminal = (id: string) => (dispatch: ThunkDispatchType) => {
+    terminalsApi.deleteTerminal(id)
+        .then(res => {
+            dispatch(removeTerminalAC(id))
         });
 }

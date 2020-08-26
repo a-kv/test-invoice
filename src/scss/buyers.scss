@@ -1,0 +1,75 @@
+.buyers {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 80vw;
+  align-items: center;
+  color: white;
+  //margin: auto 5px;
+  .setting {
+    display: flex;
+    margin-top: 30px;
+
+  }
+
+  .table {
+    color: white;
+    width: 70%;
+    border-collapse: collapse;
+  }
+
+  .pagination {
+    display: flex;
+    margin: 30px;
+    font-size: 25px;
+    letter-spacing: 4px;
+    color: #d0d0d0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .pages a {
+      display: flex;
+      //margin: 0 3px;
+    }
+
+    .pages a:hover {
+      color: rgba(97, 218, 251, 0.76);
+    }
+
+    .activePage {
+      color: rgba(97, 218, 251, 0.76);
+    }
+  }
+
+
+  //  tr {
+  //  }
+  //
+  //  th, td {
+  //    border-bottom: #262626 1px solid;
+  //  }
+  //
+  //  .col #min {
+  //    transform: rotate(180deg);
+  //
+  //    &:hover {
+  //      color: green;
+  //      cursor: pointer;
+  //    }
+  //  }
+  //
+  //  .col #max {
+  //    &:hover {
+  //      color: green;
+  //      cursor: pointer;
+  //    }
+  //  }
+}
+
+
+
+
+
+

@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import './scss/App.scss';
+import {Route, Switch} from 'react-router-dom';
+import {SideBar} from "./components/SideBar";
+import {Buyers} from './components/Buyers/Buyers';
+import {Terminals} from './components/Terminals/Terminals';
+import {Error} from './components/Error/Error';
+import {LoginForm} from './components/Login/LoginForm';
+import { Buyer } from './components/Buyers/Buyer/Buyer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App = () => {
+
+    const [isAuth, setIsAuth] = useState(false)
+    const [userData, setUserData] = useState([])
+
+    const authUser = (userInfo: any) => {
+        setUserData(userData.concat(userInfo))
+    }
+
+    return (
+        <div className="App">
+            <SideBar isAuth={isAuth} userData={userData}/>
+            <div className='wrapper'>
+                <Switch>
+                    <Route exact path={'/'} render={() => <LoginForm onSubmit={authUser} isAuth={isAuth} setIsAuth={setIsAuth}/>}/>
+                    <Route exact path={'/buyers'} render={() => <Buyers isAuth={isAuth}/>}/>
+                    <Route exact path={'/buyers/:id'} render={() => <Buyer isAuth={isAuth}/>}/>
+                    <Route exact path={'/terminals'} render={() => <Terminals isAuth={isAuth}/>}/>
+                    <Route path={'/*'} render={() => <Error/>}/>
+                </Switch>
+            </div>
+        </div>
+    );
+};
 
 export default App;
