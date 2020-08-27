@@ -10,8 +10,8 @@ type propsType = {
 }
 
 export const LoginForm = (props: propsType) => {
-    const [userName, setUserName] = useState('a-kv')
-    const [password, setPassword] = useState('1234QWERasdf')
+    const [userName, setUserName] = useState('')
+    const [password, setPassword] = useState('')
     const [userNameError, setUserNameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
