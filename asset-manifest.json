@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/test-invoice/static/css/main.50cfb2f1.chunk.css",
-    "main.js": "/test-invoice/static/js/main.3b736201.chunk.js",
-    "main.js.map": "/test-invoice/static/js/main.3b736201.chunk.js.map",
+    "main.css": "/test-invoice/static/css/main.dfb25f66.chunk.css",
+    "main.js": "/test-invoice/static/js/main.3415cfea.chunk.js",
+    "main.js.map": "/test-invoice/static/js/main.3415cfea.chunk.js.map",
     "runtime-main.js": "/test-invoice/static/js/runtime-main.70f5bb10.js",
     "runtime-main.js.map": "/test-invoice/static/js/runtime-main.70f5bb10.js.map",
-    "static/js/2.d5813bc8.chunk.js": "/test-invoice/static/js/2.d5813bc8.chunk.js",
-    "static/js/2.d5813bc8.chunk.js.map": "/test-invoice/static/js/2.d5813bc8.chunk.js.map",
+    "static/js/2.fc53560c.chunk.js": "/test-invoice/static/js/2.fc53560c.chunk.js",
+    "static/js/2.fc53560c.chunk.js.map": "/test-invoice/static/js/2.fc53560c.chunk.js.map",
     "index.html": "/test-invoice/index.html",
-    "precache-manifest.a99b63a337343d9c7c5e02256cdb16d3.js": "/test-invoice/precache-manifest.a99b63a337343d9c7c5e02256cdb16d3.js",
+    "precache-manifest.149cca8900ff5b8df91face072185a45.js": "/test-invoice/precache-manifest.149cca8900ff5b8df91face072185a45.js",
     "service-worker.js": "/test-invoice/service-worker.js",
-    "static/css/main.50cfb2f1.chunk.css.map": "/test-invoice/static/css/main.50cfb2f1.chunk.css.map",
-    "static/js/2.d5813bc8.chunk.js.LICENSE.txt": "/test-invoice/static/js/2.d5813bc8.chunk.js.LICENSE.txt"
+    "static/css/main.dfb25f66.chunk.css.map": "/test-invoice/static/css/main.dfb25f66.chunk.css.map",
+    "static/js/2.fc53560c.chunk.js.LICENSE.txt": "/test-invoice/static/js/2.fc53560c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.70f5bb10.js",
-    "static/js/2.d5813bc8.chunk.js",
-    "static/css/main.50cfb2f1.chunk.css",
-    "static/js/main.3b736201.chunk.js"
+    "static/js/2.fc53560c.chunk.js",
+    "static/css/main.dfb25f66.chunk.css",
+    "static/js/main.3415cfea.chunk.js"
   ]
 }
