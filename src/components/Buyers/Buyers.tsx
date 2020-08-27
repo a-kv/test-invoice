@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../scss/buyers.scss';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from '../../redux/store';
@@ -15,6 +15,9 @@ export const Buyers = ({isAuth}: propsType) => {
     const {buyers, totalCount, currentPage, pageSize, order, sortFields} = useSelector(({buyers}: AppRootStateType) => buyers)
 
     const dispatch = useDispatch();
+    const [hiddenIconFlagTotalRevenues, setHiddenIconFlagTotalRevenues] = useState(false);
+    const [hiddenIconFlagNumberOfPurchases, setHiddenIconFlagNumberOfPurchases] = useState(false);
+    const [hiddenIconFlagAverageCheck, setHiddenIconFlagAverageCheck] = useState(false);
 
     useEffect(() => {
         if (buyers.length === 0) {
@@ -41,14 +44,33 @@ export const Buyers = ({isAuth}: propsType) => {
     }
     const setAverageCheckDesc = (sortFields: string, order: string) => {
         changeData(sortFields, order)
+        setHiddenIconFlagAverageCheck(!hiddenIconFlagAverageCheck)
     };
 
     const setNumberOfPurchasesDesc = (sortFields: string, order: string) => {
         changeData(sortFields, order)
+        setHiddenIconFlagNumberOfPurchases(!hiddenIconFlagNumberOfPurchases)
     };
 
     const setTotalRevenuesDesc = (sortFields: string, order: string) => {
         changeData(sortFields, order)
+        setHiddenIconFlagTotalRevenues(!hiddenIconFlagTotalRevenues)
+    };
+    const setAverageCheckAsc= (sortFields: string, order: string) => {
+        changeData(sortFields, order)
+        setHiddenIconFlagAverageCheck(!hiddenIconFlagAverageCheck)
+    };
+
+    const setNumberOfPurchasesAsc = (sortFields: string, order: string) => {
+        changeData(sortFields, order)
+        setHiddenIconFlagNumberOfPurchases(!hiddenIconFlagNumberOfPurchases)
+
+    };
+
+    const setTotalRevenuesAsc = (sortFields: string, order: string) => {
+        changeData(sortFields, order)
+        setHiddenIconFlagTotalRevenues(!hiddenIconFlagTotalRevenues)
+
     };
 
     return (
@@ -63,6 +85,12 @@ export const Buyers = ({isAuth}: propsType) => {
                 setAverageCheckDesc={setAverageCheckDesc}
                 setNumberOfPurchasesDesc={setNumberOfPurchasesDesc}
                 setTotalRevenuesDesc={setTotalRevenuesDesc}
+                setAverageCheckAsc={setAverageCheckAsc}
+                setNumberOfPurchasesAsc={setNumberOfPurchasesAsc}
+                setTotalRevenuesAsc={setTotalRevenuesAsc}
+                hiddenIconFlagAverageCheck={hiddenIconFlagAverageCheck}
+                hiddenIconFlagNumberOfPurchases={hiddenIconFlagNumberOfPurchases}
+                hiddenIconFlagTotalRevenues={hiddenIconFlagTotalRevenues}
             />
             <Pagination totalItemsCount={totalCount}
                         onChange={handlePageChange}

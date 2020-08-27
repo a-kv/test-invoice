@@ -9,6 +9,12 @@ type propsType = {
     setAverageCheckDesc: (sortFields: string, order: string) => void
     setNumberOfPurchasesDesc: (sortFields: string, order: string) => void
     setTotalRevenuesDesc: (sortFields: string, order: string) => void
+    setAverageCheckAsc: (sortFields: string, order: string) => void
+    setNumberOfPurchasesAsc: (sortFields: string, order: string) => void
+    setTotalRevenuesAsc: (sortFields: string, order: string) => void
+    hiddenIconFlagAverageCheck: boolean
+    hiddenIconFlagTotalRevenues: boolean
+    hiddenIconFlagNumberOfPurchases: boolean
 }
 
 export const Table = (props: propsType) => {
@@ -38,19 +44,28 @@ export const Table = (props: propsType) => {
                         <th>Buyer ID</th>
                         <th>Name</th>
                         <th className="col">Average check
-
-                            <span id={'max'} className="material-icons"
-                                  onClick={() => props.setAverageCheckDesc('averageCheck', 'desc')}>filter_list</span>
+                            {!props.hiddenIconFlagAverageCheck ?
+                                <span id={'max'} className="material-icons"
+                                      onClick={() => props.setAverageCheckDesc('averageCheck', 'desc')}>filter_list</span>
+                                : <span id={'min'} className="material-icons"
+                                        onClick={() => props.setAverageCheckAsc('averageCheck', 'asc')}>filter_list</span>}
                         </th>
                         <th className="col">Buying
-                            <span id={'max'} className="material-icons"
-                                  onClick={() => props.setNumberOfPurchasesDesc('numberOfPurchases', 'desc')}>filter_list</span>
+                            {!props.hiddenIconFlagNumberOfPurchases ?
+                                <span id={'max'} className="material-icons"
+                                      onClick={() => props.setNumberOfPurchasesDesc('numberOfPurchases', 'desc')}>filter_list</span>
+                                : <span id={'min'} className="material-icons"
+                                        onClick={() => props.setNumberOfPurchasesAsc('numberOfPurchases', 'asc')}>filter_list</span>}
                         </th>
                         <th className="col">Total revenue
-                            <span id={'max'} className="material-icons"
-                                  onClick={() => props.setTotalRevenuesDesc('totalRevenues', 'desc')}>filter_list</span>
+                            {!props.hiddenIconFlagTotalRevenues ?
+                                <span id={'max'} className="material-icons"
+                                      onClick={() => props.setTotalRevenuesDesc('totalRevenues', 'desc')}>filter_list</span>
+                                : <span id={'min'} className="material-icons"
+                                        onClick={() => props.setTotalRevenuesAsc('totalRevenues', 'asc')}>filter_list</span>}
                         </th>
                     </tr>
+
                     {
                         buyersArr.map(buyer =>
                             <tr key={buyer.id}>

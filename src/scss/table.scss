@@ -41,16 +41,19 @@
 
       tr {
         .col #max {
-          //transform: rotate(180deg);
-
+          transform: rotate(180deg);
           &:hover {
             color: green;
             cursor: pointer;
           }
         }
+        .col #min {
+          //transform: rotate(180deg);
       }
     }
   }
+}
+
 }
 
 
